@@ -1,0 +1,10 @@
+# Netlify offers the ability to configure the Redirects, Rewrites, Proxying and Headers directly in this configuration file. Please see the README for links to Netlify documentation.
+
+/*
+  X-Header-Source: _headers
+  X-Headers-File-Loading: True
+
+/
+  X-Header-Source: _headers root
+  X-Headers-File-Loading: True
+  

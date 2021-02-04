@@ -1,9 +1,11 @@
 {
-  "name": "netlify-functions-template",
+  "name": "serverless-redirector",
   "version": "0.0.1",
-  "description": "Serverless functions, services for uwhealth.org in node.js project template",
-  "main": "serverless/hello-world.js",
+  "description": "Serverless function for redirecting on the back end",
+  "main": "serverless/redirector/index.js",
   "scripts": {
+    "build": "npm run copy404",
+    "copy404": " cp ./public/404.html ./serverless/redirector/",
     "lint": "eslint --fix \"**/*.js\"",
     "start": "netlify dev",
     "netlify:newfunc": "netlify functions:create",
@@ -12,36 +14,38 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UWHealth/netlify-functions-template.git"
+    "url": "git+https://github.com/moop-moop/netlify-logdna-serverless-redirector.git"
   },
   "keywords": [
     "netlify",
     "serverless",
-    "function"
+    "function",
+    "logdna"
   ],
-  "author": "https://github.com/UWHealth",
+  "author": "https://github.com/moop-moop",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/UWHealth/netlify-functions-template/issues"
+    "url": "https://github.com/moop-moop/netlify-logdna-serverless-redirector/issues"
   },
-  "homepage": "https://github.com/UWHealth/netlify-functions-template#readme",
+  "homepage": "https://github.com/moop-moop/netlify-logdna-serverless-redirector#readme",
   "devDependencies": {
-    "@jest/globals": "^26.2.0",
+    "@jest/globals": "^26.6.2",
     "dot-prop": "^5.1.1",
-    "eslint": "^7.6.0",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.3",
     "husky": "^4.2.5",
-    "jest": "^26.2.2",
+    "jest": "^26.6.3",
     "netlify-cli": "^2.59.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.1.2"
   },
   "dependencies": {
-    "@uwhealth/netlify-plugin-jest": "1.0",
-    "lint-staged": "^10.2.11",
-    "lodash": "^4.17.19"
+    "@logdna/logger": "^2.2.2",
+    "@uwhealth-public/netlify-plugin-jest": "^1.0.1",
+    "lint-staged": "^10.4.0",
+    "lodash": "^4.17.20"
   },
   "husky": {
     "hooks": {

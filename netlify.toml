@@ -5,9 +5,10 @@
 [dev]
   functions = "serverless"
   publish = "public"
+  framework = "#static"
 
 [[plugins]]
-package = "@uwhealth/netlify-plugin-jest"
+package = "@uwhealth-public/netlify-plugin-jest"
 
 ## Netlify offers the ability to configure the Redirects, Rewrites, Proxying and Headers directly in this *.toml configuration file. Please see the README for links to Netlify documentation.
 ## these are samples.

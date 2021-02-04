@@ -109,3 +109,4 @@ dist
 # jest results
 
 jest.results.json
+.vscode/
