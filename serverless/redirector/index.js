@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 const { isEmpty, split, dropRight } = require('lodash');
+const { once } = require('events');
 const logger = require('./logger');
 const get404 = require('./get404');
 
 async function log(message, logLevel) {
-  logger(message, logLevel);
+  logger.log(message, logLevel);
 }
 
-log('Message outside of Handler', 'info');
+// log('Message outside of Handler', 'info');
 
 const fullpathMap = require('./fullpathMap');
 const pathMap = require('./pathMap');
@@ -58,7 +59,7 @@ exports.handler = async (event) => {
       log(
         {
           message: `Redirector found a fullpathMap match for:${uriString}, going to:${destination}`,
-          map: 'pathMap',
+          map: 'fullpathMap',
           status: 301,
           uri: uriString,
           destination,
@@ -68,7 +69,7 @@ exports.handler = async (event) => {
       );
       console.log({
         message: `Redirector found a fullpathMap match for:${uriString}, going to:${destination}`,
-        map: 'pathMap',
+        map: 'fullpathMap',
         status: 301,
         uri: uriString,
         destination,
@@ -120,6 +121,7 @@ exports.handler = async (event) => {
     // const theError = JSON.stringify(err, Object.getOwnPropertyNames(err));
     log(err.message, 'error');
     console.log(`Error message: ${JSON.stringify(err.message)}`);
+    // await once(logger, 'cleared');
     return {
       statusCode: 500,
       body: 'There has been an error with this request. Please view logs to determine cause.'

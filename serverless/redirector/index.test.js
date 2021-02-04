@@ -1,14 +1,20 @@
 const { describe, expect, it } = require('@jest/globals');
 const redirector = require('./index').handler;
-const logger = require('./logger');
+// let logger = require('./logger');
 const fullpathMap = require('./fullpathMap');
 const pathMap = require('./pathMap');
 const { mockFullpathMap, mockPathMap, responses, notFoundResponse } = require('./index.mock');
 const get404 = require('./get404');
 
-// mock a logger
-jest.mock('./logger', () => jest.fn());
-logger.mockImplementation();
+beforeAll(() => {
+  // jest.mock(logger.log, () => jest.fn());
+  // logger.mockImplementation(() => jest.fn());
+  // jest.mock('./logger');
+  // logger = { log: jest.fn() };
+});
+
+// jest.mock('log', () => jest.fn());
+// jest.spyOn(logger, logger.log);
 
 // mocking the redirtect maps
 jest.mock('./fullpathMap', () => jest.fn());

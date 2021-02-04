@@ -47,12 +47,6 @@
     "lint-staged": "^10.4.0",
     "lodash": "^4.17.20"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
-    }
-  },
   "lint-staged": {
     "serverless/**/*.{js,jsx,css}": [
       "prettier --write",
