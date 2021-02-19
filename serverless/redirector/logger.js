@@ -12,9 +12,7 @@ const options = {
   level: 'info', // default level if not set in request
   hostname: process.env.SITE_NAME || 'Netlify',
   tags: ['netlify', 'function'],
-  indexMeta: true,
-  flushIntervalMs: 5,
-  timeout: 3000
+  indexMeta: true
 };
 
 // console.log(`options: ${JSON.stringify(options)}`);
