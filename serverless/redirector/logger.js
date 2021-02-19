@@ -51,5 +51,7 @@ module.exports = async function log(message, logLevel) {
   // logger.log(message, logLevel);
   dualLog(message, logLevel);
   // Ensure logs have been flushed to LogDNA before finishing
+  // await logger.flush();
   await once(logger, 'cleared');
+  return true;
 };
