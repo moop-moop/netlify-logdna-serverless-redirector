@@ -24,11 +24,11 @@ const logger = logdna.setupDefaultLogger(process.env.LOGDNA_API_KEY, options);
 // Override console methods to send logs to both LogDNA and stdout/stderr
 // const { log: consoleLog, error: consoleError } = console;
 // const { error: consoleError } = console;
-const { log: consoleLog } = console;
+// const { log: consoleLog } = console;
 
 const dualLog = async (message, logLevel) => {
   logger.log(message, logLevel);
-  consoleLog(`${logLevel}: ${JSON.stringify(message, undefined, 2)}`);
+  // consoleLog(`${logLevel}: ${JSON.stringify(message, undefined, 2)}`);
   logger.flush();
 };
 
@@ -38,7 +38,6 @@ const dualLog = async (message, logLevel) => {
 // };
 
 // logger.on('error', consoleError);
-logger.on('error', console.error);
 
 module.exports = async function log(message, logLevel) {
   // console.log(`I am the logger logging: ${message} @ level ${logLevel}`);
@@ -54,3 +53,5 @@ module.exports = async function log(message, logLevel) {
   await once(logger, 'cleared');
   return true;
 };
+
+logger.on('error', () => {});
