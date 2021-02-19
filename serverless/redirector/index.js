@@ -20,6 +20,28 @@ exports.handler = async (event) => {
     const rawURIString = event.queryStringParameters.uri || event.path;
     // sanitize input uri
     const uriString = encodeURI(rawURIString);
+
+    if (uriString === '/happy200') {
+      log(
+        {
+          message: `Lets be happy ${uriString} returning a 200 response.`,
+          status: 200,
+          uri: uriString,
+          userAgent: event.headers['user-agent']
+        },
+        'info'
+      );
+      return {
+        statusCode: 200,
+        body: `Does the happy 200 reponse Log correctly?`,
+        headers: {
+          'Cache-Control': 'public, max-age=0, must-revalidate',
+          'x-xss-protection': '1; mode=block',
+          'x-frame-options': 'SAMEORIGIN'
+        }
+      };
+    }
+
     let destination = fullpathMap()[uriString];
     let pathsArray;
     log(`Incoming request path: ${uriString}`, 'info');
