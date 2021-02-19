@@ -28,9 +28,10 @@ const logger = logdna.createLogger(process.env.LOGDNA_API_KEY, options);
 // const { error: consoleError } = console;
 const { log: consoleLog } = console;
 
-const dualLog = (message, logLevel) => {
+const dualLog = async (message, logLevel) => {
   logger.log(message, logLevel);
   consoleLog(`${logLevel}: ${JSON.stringify(message, undefined, 2)}`);
+  logger.flush();
 };
 
 // console.error = function error(message) {
@@ -51,7 +52,7 @@ module.exports = async function log(message, logLevel) {
   // logger.log(message, logLevel);
   dualLog(message, logLevel);
   // Ensure logs have been flushed to LogDNA before finishing
-  // await logger.flush();
+  // logger.flush();
   await once(logger, 'cleared');
   return true;
 };
