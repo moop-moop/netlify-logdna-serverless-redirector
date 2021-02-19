@@ -19,7 +19,7 @@ const options = {
 
 // console.log(`options: ${JSON.stringify(options)}`);
 
-const logger = logdna.createLogger(process.env.LOGDNA_API_KEY, options);
+const logger = logdna.setupDefaultLogger(process.env.LOGDNA_API_KEY, options);
 
 // console.log(` loggerImpl: ${JSON.stringify(loggerImpl)}`);
 
