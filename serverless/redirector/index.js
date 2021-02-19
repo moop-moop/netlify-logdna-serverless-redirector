@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 const { isEmpty, split, dropRight } = require('lodash');
-const { once } = require('events');
-const logger = require('./logger');
+const log = require('./logger');
 const get404 = require('./get404');
 
-async function log(message, logLevel) {
-  logger.log(message, logLevel);
-}
+// async function log(message, logLevel) {
+//   logger.log(message, logLevel);
+// }
 
 // log('Message outside of Handler', 'info');
 
@@ -24,7 +23,7 @@ exports.handler = async (event) => {
     let destination = fullpathMap()[uriString];
     let pathsArray;
     log(`Incoming request path: ${uriString}`, 'info');
-    console.log(`Incoming request path: ${uriString}`);
+    // console.log(`Incoming request path: ${uriString}`);
     if (isEmpty(destination)) {
       pathsArray = split(uriString, '/', 10);
 
@@ -43,14 +42,14 @@ exports.handler = async (event) => {
             },
             'info'
           );
-          console.log({
-            message: `Redirector found a pathMap match for:${newPath}, going to:${destination}`,
-            map: 'pathMap',
-            status: 301,
-            uri: uriString,
-            destination,
-            userAgent: event.headers['user-agent']
-          });
+          // console.log({
+          //   message: `Redirector found a pathMap match for:${newPath}, going to:${destination}`,
+          //   map: 'pathMap',
+          //   status: 301,
+          //   uri: uriString,
+          //   destination,
+          //   userAgent: event.headers['user-agent']
+          // });
 
           break;
         }
@@ -67,14 +66,14 @@ exports.handler = async (event) => {
         },
         'info'
       );
-      console.log({
-        message: `Redirector found a fullpathMap match for:${uriString}, going to:${destination}`,
-        map: 'fullpathMap',
-        status: 301,
-        uri: uriString,
-        destination,
-        userAgent: event.headers['user-agent']
-      });
+      // console.log({
+      //   message: `Redirector found a fullpathMap match for:${uriString}, going to:${destination}`,
+      //   map: 'fullpathMap',
+      //   status: 301,
+      //   uri: uriString,
+      //   destination,
+      //   userAgent: event.headers['user-agent']
+      // });
     }
 
     if (!isEmpty(destination)) {
@@ -101,12 +100,12 @@ exports.handler = async (event) => {
       },
       'info'
     );
-    console.log({
-      message: `No matches found for ${uriString} returning html from 404.html`,
-      status: 404,
-      uri: uriString,
-      userAgent: event.headers['user-agent']
-    });
+    // console.log({
+    //   message: `No matches found for ${uriString} returning html from 404.html`,
+    //   status: 404,
+    //   uri: uriString,
+    //   userAgent: event.headers['user-agent']
+    // });
     // await once(logger, 'cleared');
     return {
       statusCode: 404,
@@ -120,7 +119,7 @@ exports.handler = async (event) => {
   } catch (err) {
     // const theError = JSON.stringify(err, Object.getOwnPropertyNames(err));
     log(err.message, 'error');
-    console.log(`Error message: ${JSON.stringify(err.message)}`);
+    // console.log(`Error message: ${JSON.stringify(err.message)}`);
     // await once(logger, 'cleared');
     return {
       statusCode: 500,

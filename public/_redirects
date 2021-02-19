@@ -2,5 +2,4 @@
 /_next/* /404 404
 
 # proxy to function to lookup paths for redirection that matched no static files
-# comment out this line when developing locally
 /* /.netlify/functions/redirector 200

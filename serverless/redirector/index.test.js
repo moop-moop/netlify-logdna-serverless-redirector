@@ -1,18 +1,21 @@
+/* eslint-disable no-console */
 const { describe, expect, it } = require('@jest/globals');
 const redirector = require('./index').handler;
-// let logger = require('./logger');
+// const log = require('./logger');
 const fullpathMap = require('./fullpathMap');
 const pathMap = require('./pathMap');
 const { mockFullpathMap, mockPathMap, responses, notFoundResponse } = require('./index.mock');
 const get404 = require('./get404');
 
-beforeAll(() => {
-  // jest.mock(logger.log, () => jest.fn());
-  // logger.mockImplementation(() => jest.fn());
-  // jest.mock('./logger');
-  // logger = { log: jest.fn() };
-});
+jest.mock('./logger');
 
+// beforeAll(() => {
+// });
+
+// jest.mock(logger.log, () => jest.fn());
+// log.mock(() => jest.fn());
+// logger = { log: jest.fn() };
+// jest.mock('console.log', () => jest.fn());
 // jest.mock('log', () => jest.fn());
 // jest.spyOn(logger, logger.log);
 
