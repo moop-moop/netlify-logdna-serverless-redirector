@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const logdna = require('@logdna/logger');
 // const { once } = require('events');
-require('events').EventEmitter.defaultMaxListeners = 15;
+require('events').EventEmitter.defaultMaxListeners = 100;
 
 // console.log(
 //   `context:${process.env.CONTEXT}, build_id:${process.env.BUILD_ID}, review_id:${process.env.REVIEW_ID}, pull_request:${process.env.PULL_REQUEST}, branch:${process.env.BRANCH}, deploy_prime_url:${process.env.DEPLOY_PRIME_URL}`
