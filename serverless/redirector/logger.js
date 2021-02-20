@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const logdna = require('@logdna/logger');
-const { once } = require('events');
+// const { once } = require('events');
 
 // console.log(
 //   `context:${process.env.CONTEXT}, build_id:${process.env.BUILD_ID}, review_id:${process.env.REVIEW_ID}, pull_request:${process.env.PULL_REQUEST}, branch:${process.env.BRANCH}, deploy_prime_url:${process.env.DEPLOY_PRIME_URL}`
@@ -17,7 +17,7 @@ const options = {
 
 // console.log(`options: ${JSON.stringify(options)}`);
 
-const logger = logdna.setupDefaultLogger(process.env.LOGDNA_API_KEY, options);
+const logger = logdna.createLogger(process.env.LOGDNA_API_KEY, options);
 
 // console.log(` loggerImpl: ${JSON.stringify(loggerImpl)}`);
 
@@ -26,11 +26,11 @@ const logger = logdna.setupDefaultLogger(process.env.LOGDNA_API_KEY, options);
 // const { error: consoleError } = console;
 // const { log: consoleLog } = console;
 
-const dualLog = async (message, logLevel) => {
-  logger.log(message, logLevel);
-  // consoleLog(`${logLevel}: ${JSON.stringify(message, undefined, 2)}`);
-  logger.flush();
-};
+// const dualLog = async (message, logLevel) => {
+//   logger.log(message, logLevel);
+//   // consoleLog(`${logLevel}: ${JSON.stringify(message, undefined, 2)}`);
+//   // logger.flush();
+// };
 
 // console.error = function error(message) {
 //   logger.error(message);
@@ -46,12 +46,12 @@ module.exports = async function log(message, logLevel) {
   // } else {
   //   console.log(message, logLevel);
   // }
-  // logger.log(message, logLevel);
-  dualLog(message, logLevel);
+  logger.log(message, logLevel);
+  // dualLog(message, logLevel);
   // Ensure logs have been flushed to LogDNA before finishing
   // logger.flush();
-  await once(logger, 'cleared');
-  return true;
+  // await once(logger, 'cleared');
+  // return true;
 };
 
 logger.on('error', () => {});
